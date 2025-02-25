@@ -1,0 +1,34 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./backend/.env
+    environment:
+      - MONGO_URI=mongodb://database:27017/test
+    depends_on:
+      - mongodb
+    networks:
+      - my-network1
+
+  mongodb:
+    image: mongo:latest
+    container_name: database
+    command: mongod --logpath /var/log/mongodb/mongod.log --logappend --quiet --setParameter logLevel=2
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - my-network1
+
+volumes:
+  mongo-data:
+
+networks:
+  my-network1:
+    driver: bridge
