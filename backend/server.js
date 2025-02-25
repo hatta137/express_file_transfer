@@ -1,7 +1,6 @@
 import express from 'express';
 import mongoose from "mongoose";
 import fileUpload from "express-fileupload";
-import { Router } from 'express';
 import fileRoutes from './routes/file.js';
 import { errorMiddleware } from "./middlewares/error.js";
 import { responseMiddleware } from "./middlewares/response.js";
@@ -30,10 +29,8 @@ async function connectDB() {
 
 connectDB();
 
-app.use('/v1/lexicon', lexiconRoutes);
 app.use("/v1/files", fileRoutes);
 
-const router = new Router();
 
 
 app.get('/', (req, res) => {

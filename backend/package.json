@@ -14,5 +14,6 @@
     "express-fileupload": "^1.5.1",
     "mongoose": "^8.10.1",
     "ssh2-sftp-client": "^11.0.0"
-  }
+  },
+  "type": "module"
 }
